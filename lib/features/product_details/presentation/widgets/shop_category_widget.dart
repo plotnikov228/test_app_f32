@@ -23,7 +23,8 @@ Widget ShopCategoryWidget(ProductModel productDetails) {
       ),
       Column(
         children: [
-          const Icon(CustomIcons.sd, color: Colors.grey,),
+          Container(
+              child: const Icon(CustomIcons.sd, color: Colors.grey,)),
           const SizedBox(height: 5,),
           Text(productDetails.ssd, style: const TextStyle( fontWeight: FontWeight.w400 ,fontSize: 11,color: Colors.grey),),
         ],

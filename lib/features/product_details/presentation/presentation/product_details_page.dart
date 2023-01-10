@@ -107,7 +107,7 @@ class ProductDetailsPage extends StatelessWidget {
                                 ),
                                 Container(
                                   height:
-                                      MediaQuery.of(context).size.height - 140,
+                                      MediaQuery.of(context).size.height - 180,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(30)),
@@ -221,7 +221,7 @@ class ProductDetailsPage extends StatelessWidget {
                                               'Select color and capacity',
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .headline6,
+                                                  .headline5,
                                             ),
                                           ),
                                           Padding(

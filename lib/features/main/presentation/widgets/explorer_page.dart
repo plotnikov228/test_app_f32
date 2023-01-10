@@ -90,57 +90,59 @@ class ExplorerPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 103,
-              child: ListView.builder(
-                  physics:
-                      const ScrollPhysics(parent: BouncingScrollPhysics()),
-                  itemCount: categories.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 13),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 71,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: selectedCategory == index
-                                  ? CustomOrangeMaterialColor.color
-                                  : Colors.white,
-                            ),
-                            height: 71,
-                            child: IconButton(
-                              onPressed: () {
-                                if (selectedCategory != index) {
-                                  bloc.add(ChangeCategoryMainEvent(index));
-                                }
-                              },
-                              icon: Icon(
-                                categories[index].icon,
-                                color: selectedCategory == index
-                                    ? Colors.white
-                                    : Colors.grey,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 7),
-                            child: Text(
-                              categories[index].name,
-                              style: TextStyle(
-                                fontSize: 12,
+            Center(
+              child: SizedBox(
+                height: 103,
+                child: ListView.builder(
+                    physics:
+                        const ScrollPhysics(parent: BouncingScrollPhysics()),
+                    itemCount: categories.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 13),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 71,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
                                 color: selectedCategory == index
                                     ? CustomOrangeMaterialColor.color
-                                    : Colors.black,
+                                    : Colors.white,
+                              ),
+                              height: 71,
+                              child: IconButton(
+                                onPressed: () {
+                                  if (selectedCategory != index) {
+                                    bloc.add(ChangeCategoryMainEvent(index));
+                                  }
+                                },
+                                icon: Icon(
+                                  categories[index].icon,
+                                  color: selectedCategory == index
+                                      ? Colors.white
+                                      : Colors.grey,
+                                ),
                               ),
                             ),
-                          )
-                        ],
-                      ),
-                    );
-                  }),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 7),
+                              child: Text(
+                                categories[index].name,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: selectedCategory == index
+                                      ? CustomOrangeMaterialColor.color
+                                      : Colors.black,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(32, 35, 37, 24),
@@ -225,6 +227,11 @@ class ExplorerPage extends StatelessWidget {
                             height: 182,
                             width: MediaQuery.of(context).size.width - 32,
                             fit: BoxFit.fill,
+                            errorBuilder: (context, widget, _) {
+                              return Container(
+                                color: Colors.grey,
+                              );
+                            },
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
@@ -319,113 +326,121 @@ class ExplorerPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 567,
-              child: GridView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: bestSellerList.length,
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 14,
-                    mainAxisSpacing: 13,
-                    childAspectRatio: 2 / 2.7,
-                  ),
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: 227,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Stack(
-                        children: [
-                          Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                            const ProductDetailsPage()));
-                                  },
-                                  child: SizedBox(
-                                    height: 168,
-                                    child: Image.network(
-                                      bestSellerList[index].picture,
-                                      fit: BoxFit.scaleDown,
+            Center(
+              child: SizedBox(
+                height: 567,
+                child: GridView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: bestSellerList.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 14,
+                      mainAxisSpacing: 13,
+                      childAspectRatio: 2 / 2.7,
+                    ),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 227,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Stack(
+                          children: [
+                            Column(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                              const ProductDetailsPage()));
+                                    },
+                                    child: SizedBox(
                                       height: 168,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 7, left: 21),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 20,
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Text(
-                                            '\$${bestSellerList[index].priceWithoutDiscount}',
-                                            style: const TextStyle(
-                                                fontSize: 16),
-                                          ),
-                                          const SizedBox(
-                                            width: 7,
-                                          ),
-                                          Text(
-                                            '\$${bestSellerList[index].discountPrice}',
-                                            style: const TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.grey,
-                                              decoration: TextDecoration
-                                                  .lineThrough,
-                                            ),
-                                          ),
-                                        ],
+                                      child: Image.network(
+                                        bestSellerList[index].picture,
+                                        fit: BoxFit.scaleDown,
+                                        height: 168,
+                                        errorBuilder: (context, widget, _) {
+                                          return Container(
+                                            color: Colors.grey,
+                                          );
+                                        },
                                       ),
                                     ),
-                                    Text(bestSellerList[index].title)
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 10, right: 13),
-                              child: SizedBox(
-                                height: 25,
-                                width: 25,
-                                child: FloatingActionButton(
-                                  backgroundColor: Colors.white,
-                                  onPressed: () {},
-                                  child: Icon(
-                                    bestSellerList[index]
-                                                .isFavorite ==
-                                            true
-                                        ? CustomIcons.heart_1
-                                        : CustomIcons.heart_outlined,
-                                    color: CustomOrangeMaterialColor.color,
-                                    size: 11,
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 7, left: 21),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              '\$${bestSellerList[index].priceWithoutDiscount}',
+                                              style: const TextStyle(
+                                                  fontSize: 16),
+                                            ),
+                                            const SizedBox(
+                                              width: 7,
+                                            ),
+                                            Text(
+                                              '\$${bestSellerList[index].discountPrice}',
+                                              style: const TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.grey,
+                                                decoration: TextDecoration
+                                                    .lineThrough,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(bestSellerList[index].title)
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 10, right: 13),
+                                child: SizedBox(
+                                  height: 25,
+                                  width: 25,
+                                  child: FloatingActionButton(
+                                    elevation: 0.0,
+                                    backgroundColor: Colors.white,
+                                    onPressed: () {},
+                                    child: Icon(
+                                      bestSellerList[index]
+                                                  .isFavorite ==
+                                              true
+                                          ? CustomIcons.heart_1
+                                          : CustomIcons.heart_outlined,
+                                      color: CustomOrangeMaterialColor.color,
+                                      size: 11,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                    );
-                  }),
+                            )
+                          ],
+                        ),
+                      );
+                    }),
+              ),
             )
           ],
         ),
