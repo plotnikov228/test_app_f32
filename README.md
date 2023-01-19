@@ -1,16 +1,17 @@
 # test_f32
 
-A new Flutter project.
+bloc, clean architecture, для генерации кода использован retrofit
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+Проект насчитывает 3 экрана:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Главный экран
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. Экран продукта ( Всегда показывает только один продукт )
+
+3. Корзина
+
+
+
+Ссылка на видео где показана работоспособность приложения - https://drive.google.com/file/d/1vEAEi17QhsQDMCy_43xGzcODdqdtnvtm/view
